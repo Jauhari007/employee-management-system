@@ -24,7 +24,35 @@
             <a href="pegawai.php" class="<?= in_array(basename($_SERVER['PHP_SELF']), ['pegawai.php', 'tambah.php', 'edit.php']) ? 'active' : '' ?>">
                 <i class="fas fa-users"></i> Data Pegawai
             </a>
+            <a href="logout.php" id="logout-btn" style="margin-top: auto; color: #ff6b6b;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
         </div>
+        
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutBtn = document.getElementById('logout-btn');
+            if(logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Yakin ingin keluar?',
+                        text: "Anda harus login kembali untuk masuk ke sistem.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#ff6b6b',
+                        cancelButtonColor: '#8a8a97',
+                        confirmButtonText: 'Ya, Logout',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = this.href;
+                        }
+                    });
+                });
+            }
+        });
+        </script>
         
         <!-- Main Content -->
         <div class="main-content">
